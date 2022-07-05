@@ -2,7 +2,8 @@
 ### [Project Page](https://zju3dv.github.io/pvo/) | [Paper](https://arxiv.org/abs/2207.01610)
 <br/>
 
-> PVO: Panoptic Visual Odometry 
+> PVO: Panoptic Visual Odometry  
+
 > [Weicai Ye](https://ywcmaike.github.io/), [Xinyue Lan](https://github.com/siyisan), [Shuo Chen](https://github.com/Eric3778), [Yuhang Ming](https://github.com/YuhangMing), [Xinyuan Yu](https://github.com/RickyYXY), [Hujun Bao](http://www.cad.zju.edu.cn/home/bao/), [Zhaopeng Cui](https://zhpcui.github.io/), [Guofeng Zhang](http://www.cad.zju.edu.cn/home/gfzhang)
 > Arxiv 2022
 
