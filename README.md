@@ -18,7 +18,7 @@ If you find this code useful for your research, please use the following BibTeX 
 ```bibtex
 @article{Ye2022PVO,
     title={PVO: Panoptic Visual Odometry},
-    author={Ye, Weicai and Lan, Xinyue and Chen, Shuo and Ming, Yuhang and Yu, Xinyuan and Bao, Chong and Bao, Hujun and Cui, Zhaopeng and Zhang, Guofeng},
+    author={Ye, Weicai and Lan, Xinyue and Chen, Shuo and Ming, Yuhang and Yu, Xinyuan and Bao, Hujun and Cui, Zhaopeng and Zhang, Guofeng},
     booktitle={arxiv}, 
     year={2022}
   }
