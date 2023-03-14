@@ -1,0 +1,33 @@
+_BASE_: "Base-Panoptic-FPN.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 3 # thing
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 12 # stuff
+  PANOPTIC_FPN:
+    FUSION: False
+DATASETS:
+  TRAIN: ("vkitti_train",)
+  TEST: ("vkitti_test",)
+SOLVER:
+  IMS_PER_BATCH: 16
+  BASE_LR: 1e-5 
+  STEPS: (210000, 250000)
+  MAX_ITER: 270000
+  CHECKPOINT_PERIOD: 10
+INPUT:
+  MASK_FORMAT: "bitmask"
+  MIN_SIZE_TRAIN: (375,)
+  # MIN_SIZE_TRAIN: (620, 775, 930, 1085, 1240)
+  MAX_SIZE_TRAIN: 1242
+  MIN_SIZE_TEST: 375 # 375
+  MAX_SIZE_TEST: 1242 #1240
+
+DATALOADER:
+  NUM_WORKERS: 2
+
+  
+

@@ -1,0 +1,16 @@
+categories = [
+    {"id": 0, "trainId": 1, "isthing": 0, "name": "Terrain", "color": [210, 0, 200]}, 
+    {"id": 1, "trainId": 2, "isthing": 0, "name": "sky", "color": [90, 200, 255]}, 
+    {"id": 2, "trainId": 3, "isthing": 0, "name": "Tree", "color": [0, 199, 0]},
+    {"id": 3, "trainId": 4, "isthing": 0, "name": "Vegetation", 'color': [90, 240, 0]},  
+    {"id": 4, "trainId": 5, "isthing": 0, "name": "Building", "color": [140, 140, 140]}, 
+    {"id": 5, "trainId": 6, "isthing": 0, "name": "Road",  'color': [100, 60, 100]}, 
+    {"id": 6, "trainId": 7, "isthing": 0, "name": "GuardRail", "color": [250, 100, 255]}, 
+    {"id": 7, "trainId": 8, "isthing": 0, "name": "TrafficSign", "color": [255, 255, 0]},
+    {"id": 8, "trainId": 9, "isthing": 0, "name": "TrafficLight", "color": [200, 200, 0]},  
+    {"id": 9, "trainId": 10, "isthing": 0, "name": "Pole", "color": [255, 130, 0]},
+    {"id": 10, "trainId": 11, "isthing": 0, "name": "Misc", "color": [80, 80, 80]},
+    {"id": 11, "trainId": 12, "isthing": 1, "name": "Truck", "color": [160, 60, 60]},
+    {"id": 12, "trainId": 13, "isthing": 1, "name": "Car", 'color': [255, 127, 80]},
+    {"id": 13, "trainId": 14, "isthing": 1, "name": "Van", "color": [0, 139, 139]},          
+]

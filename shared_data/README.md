@@ -1,0 +1,1 @@
+This folder saves some data that both used by VPS_Module and VP_Module

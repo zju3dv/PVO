@@ -1,0 +1,6 @@
+room1
+office1
+room2
+office2
+office3
+office4

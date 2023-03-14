@@ -1,0 +1,2 @@
+-  Download the panFPN model from google drive: [panFPN_checkpoint](https://pan.baidu.com/s/1ncSi_EihY479SkCEFLHYzw?pwd=zsjq) and save to checkpoints/panFPN.pth
+- Download the vo model from google drive:[vo_checkpoint](https://pan.baidu.com/s/10_tIdaDPf5DjgmU9O6iVYg?pwd=nei5) and save to checkpoints/vkitti2_dy_train_semiv4_080000.pth 
