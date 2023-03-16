@@ -213,22 +213,3 @@ class DepthVideo:
 
             self.disps.clamp_(min=0.001)
     
-
-class VO_DepthVideo(DepthVideo):
-
-    def ba(self, target, weight, eta, ii, jj, t0=1, t1=None, itrs=2, lm=1e-4, ep=0.1, motion_only=False):
-        Ps = SE3(self.poses)
-        Gs = SE3.IdentityLike(Ps)
-        disp = self.disps.unsqueeze(0)
-        print(t0,t1)
-        print(Gs.shape, disp.shape, target.shape, weight.shape, eta.shape, self.intrinsics.shape, len(ii), jj) 
-        # 1024, 1x1024x30x101, 60x2x30x101, 60x2x30x101, 12x30x101, 1024x4, 60
-        a=p
-        for i in range(itrs):
-            Gs, disp = \
-                BA( target.unsqueeze(0), weight.unsqueeze(0), eta, Gs, disp, self.intrinsics[0:1], ii, jj, fixedp=2, rig=1 )
-        self.disps = disp.squeeze(0)
-        self.pose = Gs.data
-
-        # print(Gs.shape, disps.shape, target_cam.shape, weight.shape, eta.shape, intrinsics.shape, ii, jj)
-            # 1x6, 1x6x25x50, 1x20x25x50x2, 1x20x25x50x2, 1x6x25x50, 1x6x4, 6

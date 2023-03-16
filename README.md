@@ -10,7 +10,7 @@
 
 ![demo_vid](assets/pvo_teaser.gif)
 
-## test on vkitti 15-deg-left datasets.
+## Test on vkitti 15-deg-left datasets.
 0) prepare
 follow [prepare.md](prepare.md)
 ```
@@ -32,7 +32,7 @@ sh tools/test_vo_scene.sh
 sh tools/test_vps.sh  
 ```
 
-## metrics on Virtual_KITTI2
+## Metrics on Virtual_KITTI2
 |Scene|RMSE|vpq_all/vpq_thing/vpq_stuff|
 |-----|----|---------------------------|
 |Scene01|0.371|40.39/26.43/44.57|
@@ -40,6 +40,29 @@ sh tools/test_vps.sh
 |Scene06|0.113|66.38/79.99/62.97|
 |Scene18|0.951|68.35/83.86/63.92|
 |Scene20|3.503|35.11/16.83/40.59|
+
+## Train on vkitti 15-deg-left datasets.
+1) train VO_Module 
+```
+sh tools/train_vo.sh  
+```
+
+2) train VPS_Module
+You can refer to [Detectron2](https://detectron2.readthedocs.io/en/latest/tutorials/getting_started.html) for more training details.
+Here for example, you can train  vkitti 15-deg-left on 4 GPUs, and training results are saved on `output/vps_training/`. You can modify the config-file according to the hardware conditions.
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -W ignore VPS_Module/tools/train_net.py \
+--config-file VPS_Module/configs/COCO-PanopticSegmentation/panoptic_fpn_R_50_3x_vkitti_511.yaml --num-gpu 4 \
+MODEL.WEIGHTS checkpoints/panFPN.pth \
+OUTPUT_DIR output/vps_training/
+```
+
+## Visualization
+You can refer to [DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM) for visualization.
+All demos can be run on a GPU with 11G of memory. While running, press the "s" key to increase the filtering threshold (= more points) and "a" to decrease the filtering threshold (= fewer points).
+```
+python VO_Module/evaluation_scripts/test_vo.py --datapath=datasets/Virtual_KITTI2/Scene01 --segm_filter True 
+```
 
 ## Citation
 

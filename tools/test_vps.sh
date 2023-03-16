@@ -1,7 +1,6 @@
-#!/bin/bash
 
 # test ps fusion 
-CUDA_VISIBLE_DEVICES=4 python3 -W ignore VPS_Module/tools/train_net.py \
+CUDA_VISIBLE_DEVICES=0 python3 -W ignore VPS_Module/tools/train_net.py \
 --config-file VPS_Module/configs/COCO-PanopticSegmentation/panoptic_fpn_R_50_3x_vkitti_511.yaml --num-gpu 1 \
 --eval-only MODEL.WEIGHTS checkpoints/panFPN.pth \
 OUTPUT_DIR shared_data/panoptic_segm_fusion/
