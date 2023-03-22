@@ -224,6 +224,35 @@ class DynamicUpdateModule(nn.Module):
         self.gru = ConvGRU(128, 128+128+64)
         self.agg = GraphAgg()
 
+    def pan_aware_mask(self, delta_dy, delta_m, segments):
+        lay = torch.as_tensor(np.range(1, num+1).repeat(ht*wd).reshape(num,ht,wd)).unsqueeze(0) 
+        segments = lay * 1e4 + segments
+        encode = segments * 1e4 + ((delta_dy[...,0]  + delta_dy[...,1]) > 0.5).int()
+        ky, cnt = torch.unique(encode, return_counts=True)
+        cat = ky // 1e4
+        sig = ky % 1e4
+        cat0 = cat[sig==0].detach().cpu().numpy.tolist()
+        cat1 = cat[sig==1].detach().cpu().numpy.tolist()
+        cnt0 = cnt[sig==0]
+        cnt1 = cnt[sig==1]
+        ori_cls = torch.unique(cat) 
+        for i in ori_cls:
+            if i not in cat0:
+                prob = 0
+            elif i not in cat1: 
+                prob = 1
+            else:
+                n0 = cnt0[cat0.index(i)]
+                n1 = cnt1[cat1.index(i)]
+                prob = n0 / (n0 + n1)
+            if prob > 0.5:     
+                fil = segments[0, i//1e4,...] == i
+                lay[0, i//1e4 ,...] = lay[0, i//1e4 ,...] * (1-fil*1) 
+        weight[...,0] = weight[...,0] * lay
+        weight[...,1] = weight[...,1] * lay
+
+        return weight
+    
     def forward(self, net, inp, corr, flow=None,
                 ii=None, jj=None, use_aff_bri=False, raw_mask=None, segments=None):
         """ RaftSLAM update operator """
@@ -243,7 +272,7 @@ class DynamicUpdateModule(nn.Module):
         inp = inp.view(batch*num, -1, ht, wd)
         corr = corr.view(batch*num, -1, ht, wd)
         flow = flow.view(batch*num, -1, ht, wd)
-
+        
         corr = self.corr_encoder(corr)
         flow = self.flow_encoder(flow)
         net = self.gru(net, inp, corr, flow)
@@ -263,6 +292,8 @@ class DynamicUpdateModule(nn.Module):
         weight = weight.permute(0, 1, 3, 4, 2).contiguous()
         delta_m = delta_m.permute(0, 1, 3, 4, 2).contiguous()
 
+        # weight = self.pan_aware_mask(delta_dy, delta_m, segments)
+        
         net = net.view(*output_dim)
         delta = torch.cat([delta, delta_dy], dim=-1)            
 
@@ -365,12 +396,11 @@ class DroidNet(nn.Module):
                 net, delta, weight, eta, upmask, delta_m = \
                     self.update(net, inp, corr, motion, ii, jj)  
 
-            # 更新mask(1:static 0:dynamic)
+            # (1:static 0:dynamic)
             raw_mask = raw_mask + delta_m
             mask = torch.sigmoid(raw_mask)
-            bin_mask = (mask >= dy_thresh).float() # 静动态 mask 0,1, dy_thresh=0.5, mask 大于0.5 该pixel 为静态 1x18x25x50x2
+            bin_mask = (mask >= dy_thresh).float() 
 
-            # BA时使用修正光流delta
             target_cam = coords1 + delta[..., 0:2]
             weight = torch.sigmoid(weight + (1-bin_mask)*10) 
 
@@ -394,7 +424,6 @@ class DroidNet(nn.Module):
                 if downsample: 
                     full_flow_list.append(target_all - coords0)
                 else:
-                    # 上采样光流要扩大相应比例
                     full_flow_list.append(
                         upsample_inter((target_all - coords0)*8))
 
