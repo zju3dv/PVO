@@ -224,8 +224,8 @@ class DynamicUpdateModule(nn.Module):
         self.gru = ConvGRU(128, 128+128+64)
         self.agg = GraphAgg()
 
-    def pan_aware_mask(self, delta_dy, delta_m, segments):
-        lay = torch.as_tensor(np.range(1, num+1).repeat(ht*wd).reshape(num,ht,wd)).unsqueeze(0) 
+    def pan_aware_mask(self, lay, weight, delta_dy, delta_m, segments):
+        
         segments = lay * 1e4 + segments
         encode = segments * 1e4 + ((delta_dy[...,0]  + delta_dy[...,1]) > 0.5).int()
         ky, cnt = torch.unique(encode, return_counts=True)
@@ -292,7 +292,8 @@ class DynamicUpdateModule(nn.Module):
         weight = weight.permute(0, 1, 3, 4, 2).contiguous()
         delta_m = delta_m.permute(0, 1, 3, 4, 2).contiguous()
 
-        # weight = self.pan_aware_mask(delta_dy, delta_m, segments)
+        # lay = torch.as_tensor(np.range(1, num+1).repeat(ht*wd).reshape(num,ht,wd)).unsqueeze(0) 
+        # weight = self.pan_aware_mask(lay, weight, delta_dy, delta_m, segments)
         
         net = net.view(*output_dim)
         delta = torch.cat([delta, delta_dy], dim=-1)            
