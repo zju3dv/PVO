@@ -1,5 +1,7 @@
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+os.environ["OMP_NUM_THREADS"] = "2"
+os.environ["MKL_NUM_THREADS"] = "2"
 
 import sys
 sys.path.append('droid_slam')
@@ -314,14 +316,14 @@ def train(index, args):
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--name', default='vkitti2_dy_train_sv17',
+    parser.add_argument('--name', default='vkitti2_dy_train',
                         help='name your experiment')
     parser.add_argument('--datapath', default='datasets/Virtual_KITTI2',
                         help="path to dataset directory")
     parser.add_argument('--need_inv', type=bool, default=False,
                         help='vkitti2 doesn\'t need inv poses, tartanair needs it')
     parser.add_argument('--gpus', type=str, default='0,1')
-    parser.add_argument('--mode', type=str, default='sup',
+    parser.add_argument('--mode', type=str, default='semisup',
                         help='mode in sup,semisup,unsup')
     # 0.00025 when 4 gpus, total 0.001
     # also depend on steps

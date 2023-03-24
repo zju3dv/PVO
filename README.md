@@ -40,20 +40,22 @@ sh tools/test_vps.sh
 |Scene06|0.113|66.38/79.99/62.97|
 |Scene18|0.951|68.35/83.86/63.92|
 |Scene20|3.503|35.11/16.83/40.59|
+You can get the results in the paper by iterating multiple times.
 
 ## Train on vkitti 15-deg-left datasets.
 1)  To train VPS_Module, you can refer to [Detectron2](https://detectron2.readthedocs.io/en/latest/tutorials/getting_started.html) for more training details.
 Here for example, you can train  vkitti 15-deg-left on 4 GPUs, and training results are saved on `output/vps_training/`. You can modify the config-file according to the hardware conditions.
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -W ignore VPS_Module/tools/train_net.py \
+python3 -W ignore VPS_Module/tools/train_net.py \
 --config-file VPS_Module/configs/COCO-PanopticSegmentation/panoptic_fpn_R_50_3x_vkitti_511.yaml --num-gpu 4 \
 MODEL.WEIGHTS checkpoints/panFPN.pth \
 OUTPUT_DIR output/vps_training/
 ```
 
-2) train VO_Module. 
+2) To train VO_Module, you can refer to [DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM) for more training details.
+Here for example, you can train vkitti on 4 GPUs.
 ```
-sh tools/train_vo.sh  
+python VO_Module/train.py --gpus=4 --lr=0.00025
 ```
 
 ## Visualization

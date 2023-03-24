@@ -161,7 +161,6 @@ def photo_loss(images, full_flows, vals, graph, mode, gamma=0.9, ssim=None,
 
     if mode != 'unsup':
         vals = vals[..., 3::8, 3::8, :]
-        # 不使用vals，直接全1
         # vals = torch.ones_like(images)[:, :, 0, ..., None]
         vals_all = vals[:, ii].view(-1, ht, wd)
 
@@ -175,10 +174,8 @@ def photo_loss(images, full_flows, vals, graph, mode, gamma=0.9, ssim=None,
     for i in range(n):
         w = gamma ** (n - i - 1)
 
-        # 计算光度误差必须使用原始光流
         coords_flow = coords0 + full_flows[i]
 
-        # grid为归一化至-1~1的坐标
         grid_x = coords_flow[..., 0]/(wd-1)
         grid_y = coords_flow[..., 1]/(ht-1)
         grid = torch.stack([grid_x, grid_y], dim=-1).view(-1, ht, wd, 2)
@@ -199,7 +196,6 @@ def photo_loss(images, full_flows, vals, graph, mode, gamma=0.9, ssim=None,
             aff_b = (aff_params[i][..., 1] - 0.5).view(-1, 1, 1, 1)
             warped_image0 = warped_image0*aff_a + aff_b
 
-        # 由原本的L2变为many-depth使用的pe_loss
         diff = compute_reprojection_loss(images0, warped_image0, ssim)
         if mean_mask:
             p_e = mean_on_mask(diff, val_pix)
@@ -257,7 +253,6 @@ def photo_loss_cam(images, poses_est, disps_est, intrinsics,
         warped_image0 = F.grid_sample(
             images1, grid, padding_mode="border", align_corners=True)
 
-        # 由原本的L2变为many-depth使用的pe_loss
         diff = compute_reprojection_loss(images0, warped_image0, ssim)
         p_e = (diff*val_pix).mean()
         ph_loss += w * p_e
@@ -316,12 +311,8 @@ def unsup_occ_vals(poses_est, disps_est, intrinsics,
             disp1, grid, padding_mode="border", align_corners=True)
 
         if loss == 'ph_loss':
-            # 0.005 * scale=5 = 0.025m
-            # 只要disp0在warp的前侧（带误差），即无遮挡，ph_loss专用
             val = ((1/warped_disp0 - 1/disp0) > -0.005).float()
         else:
-            # 0.005 * scale=5 * 2 = 0.05m
-            # 超过0.1m即认为深度匹配错误，代表遮挡或者动态物体，cam_ph_loss专用
             val = ((1/disp0 - 1/warped_disp0).abs() <= 0.005).float()
         
         val_list.append(val)
@@ -417,7 +408,6 @@ def mean_on_mask(diff, val_pix):
 
 
 def ce_reg_loss(preds, gamma=0.9):
-    # mask交叉熵损失
     n = len(preds)
     entry_loss = 0
 
