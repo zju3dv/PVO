@@ -1,5 +1,5 @@
 import sys
-sys.path.append('Neural-iMAP/droid_slam')
+sys.path.append('VO_Module/droid_slam')
 from droid import Droid
 
 import glob

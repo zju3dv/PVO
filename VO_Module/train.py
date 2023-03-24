@@ -1,10 +1,10 @@
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
-os.environ["OMP_NUM_THREADS"] = "2"
-os.environ["MKL_NUM_THREADS"] = "2"
+# os.environ["OMP_NUM_THREADS"] = "2"
+# os.environ["MKL_NUM_THREADS"] = "2"
 
 import sys
-sys.path.append('droid_slam')
+sys.path.append('VO_Module/droid_slam')
 
 import cv2
 import numpy as np

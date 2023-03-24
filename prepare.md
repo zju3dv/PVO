@@ -4,10 +4,9 @@
 - Download the vo model from google drive:[vo_checkpoint](https://pan.baidu.com/s/10_tIdaDPf5DjgmU9O6iVYg?pwd=nei5) and save to checkpoints/vkitti2_dy_train_semiv4_080000.pth 
 
 # droidenv env
-1. Creating a new anaconda environment using the provided .yaml file. Use `environment_novis.yaml` to if you do not want to use the visualization
+1. Creating a new anaconda environment using the provided .yaml file. Use `VO_Module/environment_novis.yaml` to if you do not want to use the visualization
 ```Bash
-cd VO_Module
-conda env create -f environment.yml
+conda env create -f VO_Module/environment.yml
 pip install evo --upgrade --no-binary evo
 pip install gdown
 ```
@@ -17,11 +16,10 @@ python setup.py install
 ```
 3. video panoptic segmentation requirements. The Video panoptic segmentation module is based on [Detectron2](https://github.com/facebookresearch/detectron2), you can install Detectron2 following [the instructions](https://detectron2.readthedocs.io/en/latest/tutorials/install.html).
 ```Bash
-cd VPS_Module
 conda activate droidenv
 conda install pytorch==1.9.0 torchvision cudatoolkit=11.1 -c pytorch -c nvidia
 
-python -m pip install -e detectron2
+python -m pip install -e VPS_Module
 pip install git+https://github.com/cocodataset/panopticapi.git
 ```
 

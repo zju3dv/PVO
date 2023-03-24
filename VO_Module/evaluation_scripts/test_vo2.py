@@ -1,5 +1,5 @@
 import sys
-sys.path.append('Neural-iMAP/droid_slam')
+sys.path.append('VO_Module/droid_slam')
 
 import torch
 from torch.utils.data import DataLoader

@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+checkpoints/
+datasets/
+shared_data/
+
 # Distribution / packaging
 .Python
 build/
