@@ -40,6 +40,7 @@ sh tools/test_vps.sh
 |Scene06|0.113|66.38/79.99/62.97|
 |Scene18|0.951|68.35/83.86/63.92|
 |Scene20|3.503|35.11/16.83/40.59|
+
 You can get the results in the paper by iterating multiple times.
 
 ## Train on vkitti 15-deg-left datasets.
