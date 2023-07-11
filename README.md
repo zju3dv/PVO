@@ -4,7 +4,7 @@
 
 > PVO: Panoptic Visual Odometry  
 
-> [Weicai Ye](https://ywcmaike.github.io/), [Xinyue Lan](https://github.com/siyisan), [Shuo Chen](https://github.com/Eric3778), [Yuhang Ming](https://github.com/YuhangMing), [Xinyuan Yu](https://github.com/RickyYXY), [Hujun Bao](http://www.cad.zju.edu.cn/home/bao/), [Zhaopeng Cui](https://zhpcui.github.io/), [Guofeng Zhang](http://www.cad.zju.edu.cn/home/gfzhang)
+> [[Weicai Ye](https://ywcmaike.github.io/), [Xinyue Lan](https://github.com/siyisan)]<sup>Co-Authors</sup>, [Shuo Chen](https://github.com/Eric3778), [Yuhang Ming](https://github.com/YuhangMing), [Xinyuan Yu](https://github.com/RickyYXY), [Hujun Bao](http://www.cad.zju.edu.cn/home/bao/), [Zhaopeng Cui](https://zhpcui.github.io/), [Guofeng Zhang](http://www.cad.zju.edu.cn/home/gfzhang)
 
 > CVPR 2023
 
@@ -79,3 +79,7 @@ If you find this code useful for your research, please use the following BibTeX 
   }
 
 ```
+
+## Acknowledgement
+
+Some code snippets are borrowed from [DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM) and [Detectron2](https://github.com/facebookresearch/detectron2). Thanks for these great projects.
