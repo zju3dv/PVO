@@ -71,12 +71,14 @@ python VO_Module/evaluation_scripts/test_vo.py --datapath=datasets/Virtual_KITTI
 If you find this code useful for your research, please use the following BibTeX entry.
 
 ```bibtex
-@article{Ye2023PVO,
-    title={PVO: Panoptic Visual Odometry},
-    author={Ye, Weicai and Lan, Xinyue and Chen, Shuo and Ming, Yuhang and Yu, Xinyuan and Bao, Hujun and Cui, Zhaopeng and Zhang, Guofeng},
-    booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 
-    year={2023}
-  }
+
+@inproceedings{Ye2023PVO,
+  title={{PVO: Panoptic visual odometry}},
+  author={Ye, Weicai and Lan, Xinyue and Chen, Shuo and Ming, Yuhang and Yu, Xingyuan and Bao, Hujun and Cui, Zhaopeng and Zhang, Guofeng},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={9579--9589},
+  year={2023}
+}
 
 ```
 
