@@ -36,6 +36,8 @@ ei_add_failtest("ref_2")
 ei_add_failtest("ref_3")
 ei_add_failtest("ref_4")
 ei_add_failtest("ref_5")
+ei_add_failtest("ref_6")
+ei_add_failtest("ref_7")
 
 ei_add_failtest("swap_1")
 ei_add_failtest("swap_2")

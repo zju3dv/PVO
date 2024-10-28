@@ -12,7 +12,8 @@ dependencies:
   - torchvision
   - open3d
   - pytorch
-  - cudatoolkit
+  # - cudatoolkit=11.7
+  - pytorch-cuda=11.8
   - tensorboard
   - scipy
   - opencv

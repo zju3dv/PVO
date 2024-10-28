@@ -84,17 +84,21 @@ class VKitti2(RGBDDataset):
                 graph = self.build_frame_graph(poses, depths, intrinsics)
 
             if self.flow_label:
+                print(scene, self.split_mode, VKitti2.split[self.split_mode])
                 fo_flows = sorted(
                     glob.glob(osp.join(scene, VKitti2.split[self.split_mode], 'frames/forwardFlow/Camera_0/*.png')))
                 ba_flows = sorted(
                     glob.glob(osp.join(scene, VKitti2.split[self.split_mode], 'frames/backwardFlow/Camera_0/*.png')))
+                # segments = sorted(
+                #     glob.glob(osp.join(scene,  VKitti2.split[self.split_mode], 'panoptic_gt_id/*.png')))
                 segments = sorted(
-                    glob.glob(osp.join(scene,  VKitti2.split[self.split_mode], 'panoptic_gt_id/*.png')))
+                    glob.glob(osp.join("datasets/Virtual_KITTI2/ALL_15-deg-left", 'panoptic_gt_id/*.png')))
                 scene_info[scene] = {'images': images, 'depths': depths, 'fo_flows': fo_flows,
                                      'ba_flows': ba_flows, 'poses': poses, 'intrinsics': intrinsics, 'segments' : segments}
             else: 
+                print(self.split_mode)
                 masks = sorted(
-                    glob.glob(osp.join(scene, VKitti2.split[self.split_mode], 'frames/dynamicMask/Camera_0/*.npy')))
+                    glob.glob(osp.join(scene, VKitti2.split[self.split_mode], 'frames/dynamicMask_00/Camera_0/*.npy')))
                 segments = sorted(
                     glob.glob(osp.join(scene,  VKitti2.split[self.split_mode], 'panFPN_segm/*.png')))
 

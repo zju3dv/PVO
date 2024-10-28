@@ -284,7 +284,8 @@ def cal_vpq_compute(gt_json, pred_json, gt_folder, pred_folder, output_dir):
     vid_num = 1 
 
     gt_pred_all = list(zip(gt_jsons, pred_jsons, gt_pans, pred_pans, gt_image_jsons))
-    gt_pred_split = np.array_split(gt_pred_all, vid_num)
+    # gt_pred_split = np.array_split(gt_pred_all, vid_num)
+    gt_pred_split = [[entry] for entry in gt_pred_all]
 
     start_time = time.time()
     vpq_all, vpq_thing, vpq_stuff = [], [], []

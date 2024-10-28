@@ -1,5 +1,7 @@
 project(EigenLapack CXX)
 
+if(EIGEN_BUILD_LAPACK AND EIGEN_BUILD_BLAS)
+
 include(CheckLanguage)
 check_language(Fortran)
 if(CMAKE_Fortran_COMPILER)
@@ -20,7 +22,7 @@ add_custom_target(lapack)
 include_directories(../blas)
 
 set(EigenLapack_SRCS
-single.cpp double.cpp complex_single.cpp complex_double.cpp ../blas/xerbla.cpp
+  dsecnd_INT_CPU_TIME.cpp second_INT_CPU_TIME.cpp single.cpp double.cpp complex_single.cpp complex_double.cpp ../blas/xerbla.cpp
 )
 
 if(EIGEN_Fortran_COMPILER_WORKS)
@@ -36,7 +38,6 @@ set(EigenLapack_SRCS  ${EigenLapack_SRCS}
   dlapy2.f  dlapy3.f  slapy2.f  slapy3.f
   clacgv.f  zlacgv.f
   slamch.f  dlamch.f
-  second_NONE.f dsecnd_NONE.f
 )
 
 option(EIGEN_ENABLE_LAPACK_TESTS OFF "Enable the Lapack unit tests")
@@ -457,3 +458,6 @@ if(EXISTS ${eigen_full_path_to_testing_lapack})
 
 endif()
 
+elseif(EIGEN_BUILD_LAPACK AND NOT EIGEN_BUILD_BLAS)
+ message(FATAL_ERROR "EIGEN_BUILD_LAPACK requires EIGEN_BUILD_BLAS")
+endif() #EIGEN_BUILD_LAPACK

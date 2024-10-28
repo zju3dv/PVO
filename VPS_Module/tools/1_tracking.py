@@ -4,7 +4,7 @@ import os
 import PIL.Image as Image
 from panopticapi.utils import id2rgb, rgb2id
 
-flow_path = "/mnt/nas_8/group/lanxinyue/droid_slam_output/full_flow" # "shared_data/full_flow"
+flow_path = "shared_data/full_flow" # "shared_data/full_flow"
 flow_names = os.listdir(flow_path)
 flow_names.sort()
 depth_path = 'shared_data/depth'

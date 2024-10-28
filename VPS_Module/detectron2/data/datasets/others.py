@@ -187,7 +187,7 @@ def register_vkitti_511_val():
         # flow_dir = "shared_data/full_flow"                       # full_flow_dir
         # depth_dir = "shared_data/depth"                          # pred_depth_dir
 
-        flow_dir = "/mnt/nas_8/group/lanxinyue/droid_slam_output/full_flow"
+        flow_dir = "shared_data/full_flow"
         DatasetCatalog.register(
             key, 
             lambda:load_vkitti_flow_eval_annotation(ann_json, image_dir, sem_seg_dir, gt_json, flow_dir),

@@ -292,7 +292,7 @@ class DynamicUpdateModule(nn.Module):
         weight = weight.permute(0, 1, 3, 4, 2).contiguous()
         delta_m = delta_m.permute(0, 1, 3, 4, 2).contiguous()
 
-        lay = torch.as_tensor(np.range(1, num+1).repeat(ht*wd).reshape(num,ht,wd)).unsqueeze(0) 
+        lay = torch.as_tensor(np.arange(1, num+1).repeat(ht*wd).reshape(num,ht,wd)).unsqueeze(0) 
         # weight = self.do_filter(lay, weight, delta_dy, delta_m, segments)
         
         net = net.view(*output_dim)

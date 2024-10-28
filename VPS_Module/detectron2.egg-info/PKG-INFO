@@ -4,11 +4,31 @@ Version: 0.6
 Summary: Detectron2 is FAIR's next-generation research platform for object detection and segmentation.
 Home-page: https://github.com/facebookresearch/detectron2
 Author: FAIR
-License: UNKNOWN
-Platform: UNKNOWN
 Requires-Python: >=3.6
+Requires-Dist: Pillow>=7.1
+Requires-Dist: matplotlib
+Requires-Dist: pycocotools>=2.0.2
+Requires-Dist: termcolor>=1.1
+Requires-Dist: yacs>=0.1.8
+Requires-Dist: tabulate
+Requires-Dist: cloudpickle
+Requires-Dist: tqdm>4.29.0
+Requires-Dist: tensorboard
+Requires-Dist: fvcore<0.1.6,>=0.1.5
+Requires-Dist: iopath<0.1.10,>=0.1.7
+Requires-Dist: future
+Requires-Dist: pydot
+Requires-Dist: dataclasses; python_version < "3.7"
+Requires-Dist: omegaconf>=2.1
+Requires-Dist: hydra-core>=1.1
+Requires-Dist: black==21.4b2
 Provides-Extra: all
+Requires-Dist: shapely; extra == "all"
+Requires-Dist: pygments>=2.2; extra == "all"
+Requires-Dist: psutil; extra == "all"
+Requires-Dist: panopticapi@ https://github.com/cocodataset/panopticapi/archive/master.zip ; extra == "all"
 Provides-Extra: dev
-
-UNKNOWN
-
+Requires-Dist: flake8==3.8.1; extra == "dev"
+Requires-Dist: isort==4.3.21; extra == "dev"
+Requires-Dist: flake8-bugbear; extra == "dev"
+Requires-Dist: flake8-comprehensions; extra == "dev"

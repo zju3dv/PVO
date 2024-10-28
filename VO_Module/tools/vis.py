@@ -234,11 +234,11 @@ db = dataset_factory(['vkitti2'], datapath='datasets/Virtual_KITTI2', do_aug=Fal
                      need_inv=False, build_mask=False, crop_size=img_size, mode='semisup', rebuild=False)
 train_loader = DataLoader(db, batch_size=1, num_workers=2)
 
-weights_file = "/mnt/nas_8/group/yuxingyuan/Neural-iMAP/checkpoints/vkitti2_dy_train_semiv4_080000.pth"
+weights_file = "checkpoints/vkitti2_dy_train_semiv4_080000.pth"
 device = 'cuda:0'
 torch.cuda.set_device(int(device.split(':')[-1]))
 
-segment_dir = "/mnt/nas_55/datasets/virtual_kitti2/vkitti/Scene02/15-deg-left/panoptic_gt_id"
+segment_dir = "datasets/virtual_kitti2/vkitti/Scene02/15-deg-left/panoptic_gt_id"
 seg_list = os.listdir(segment_dir)
 seg_list.sort()
 

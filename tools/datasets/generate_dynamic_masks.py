@@ -5,7 +5,7 @@ import os
 import numpy as np
 import time
 import sys
-sys.path.append('Neural-iMAP/droid_slam')
+sys.path.append('VO_Module/droid_slam')
 from data_readers.factory import dataset_factory
 import data_readers.vkitti2
 
